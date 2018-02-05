@@ -41,6 +41,13 @@
     </repositories>
 
     <dependencies>
+    	 <!--Apache shiro-->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-all</artifactId>
+            <version>1.2.4</version>
+        </dependency>
+    	
 		<dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
