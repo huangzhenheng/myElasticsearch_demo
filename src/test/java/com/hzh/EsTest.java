@@ -20,7 +20,10 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.ResultsExtractor;
@@ -37,9 +40,10 @@ import com.hzh.index.User;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml", "classpath:applicationContext-es.xml" })
 public class EsTest {
+	private Logger logger = LoggerFactory.getLogger(EsTest.class);
 
-	private String index = "megacorp";
-	private String type = "employee";
+	private String index = "users";
+	private String type = "user";
 
 	@Autowired
 	private ElasticsearchTemplate template;
@@ -72,7 +76,7 @@ public class EsTest {
 
 	}
 
-	@org.junit.Test
+	@Test
 	public void testCase2() throws SQLException, ClassNotFoundException {
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@192.168.100.250:1521:tianque";
@@ -81,9 +85,12 @@ public class EsTest {
 
 		Class.forName(driver);
 		Connection conn = DriverManager.getConnection(url, name, passwd);
+
 		String sql = "select * from users";
+		logger.debug("开始查询数据");
 		PreparedStatement statement = conn.prepareStatement(sql);
 		ResultSet result = statement.executeQuery();
+		logger.debug("数据查询完成");
 		while (result.next()) {
 			fetchRows(result);
 		}
@@ -110,7 +117,7 @@ public class EsTest {
 				template.bulkIndex(indices);
 				i = 0;
 				popuList.clear();
-				System.out.println("已采集：" + resultSize);
+				logger.debug("已采集：{}条", resultSize);
 			}
 
 		}
@@ -122,7 +129,7 @@ public class EsTest {
 			}
 			template.bulkIndex(indices);
 		}
-		System.out.println("采集完成，数量 ：" + resultSize);
+		logger.debug("采集完成，数量 ：{}条", resultSize);
 		Collections.emptyList();
 	}
 
@@ -165,5 +172,6 @@ public class EsTest {
 
 		return queryBuilder;
 	}
+
 
 }
