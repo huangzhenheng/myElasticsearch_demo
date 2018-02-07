@@ -24,6 +24,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
@@ -35,7 +36,10 @@ import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.hzh.config.IndexTypes;
 import com.hzh.index.User;
+import com.hzh.vo.PageResult;
+import com.hzh.vo.UserSearchVo;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -43,8 +47,8 @@ import com.hzh.index.User;
 public class EsTest {
 	private Logger logger = LoggerFactory.getLogger(EsTest.class);
 
-	private String index = "users";
-	private String type = "user";
+	private String index = IndexTypes.USERS.getIndex();
+	private String type = IndexTypes.USERS.getType();
 
 	@Autowired
 	private ElasticsearchTemplate template;
@@ -54,26 +58,21 @@ public class EsTest {
 
 	@Test
 	public void getUsers() {
+		UserSearchVo searchVo = new UserSearchVo();
+		searchVo.setOrgInternalCode(".");
+
 		SearchQuery query = new NativeSearchQueryBuilder()
 				.withIndices(index)
 				.withTypes(type)
+				.withPageable(searchVo.getPageable())
 				.build();
-		// Page<User> page = template.queryForPage(query, User.class);
-		long count = template.count(query);
-		System.out.println(count);
-		Page<User> sampleEntities = template.queryForPage(query, User.class);
+		Page<User> page = template.queryForPage(query, User.class);
+		PageResult<User> pageResult = new PageResult<User>();
 
-		System.out.println(sampleEntities.getTotalElements());
-		template.query(query, new ResultsExtractor<Map<String, Long>>() {
-			@Override
-			public Map<String, Long> extract(SearchResponse response) {
-				Map<String, Long> staticsMap = new HashMap<String, Long>();
+		BeanUtils.copyProperties(page, pageResult);
 
-				System.out.println(response);
-				return staticsMap;
-			}
-		});
-		// Assert.isEmpty(page);
+		System.out.println(pageResult.getContent());
+
 
 	}
 

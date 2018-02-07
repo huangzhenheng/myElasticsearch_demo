@@ -20,7 +20,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="/static/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                        <span class="hidden-xs"><shiro:principal property="realname"/></span>
+                        <span class="hidden-xs"></span>
                     </a>
                     <ul class="dropdown-menu" style="width:auto">
                         <li class="user-body">
