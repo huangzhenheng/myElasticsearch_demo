@@ -25,6 +25,7 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.ResultsExtractor;
 import org.springframework.data.elasticsearch.core.query.IndexQuery;
@@ -51,6 +52,31 @@ public class EsTest {
 	private Client client;
 	private int resultSize;
 
+	@Test
+	public void getUsers() {
+		SearchQuery query = new NativeSearchQueryBuilder()
+				.withIndices(index)
+				.withTypes(type)
+				.build();
+		// Page<User> page = template.queryForPage(query, User.class);
+		long count = template.count(query);
+		System.out.println(count);
+		Page<User> sampleEntities = template.queryForPage(query, User.class);
+
+		System.out.println(sampleEntities.getTotalElements());
+		template.query(query, new ResultsExtractor<Map<String, Long>>() {
+			@Override
+			public Map<String, Long> extract(SearchResponse response) {
+				Map<String, Long> staticsMap = new HashMap<String, Long>();
+
+				System.out.println(response);
+				return staticsMap;
+			}
+		});
+		// Assert.isEmpty(page);
+
+	}
+
 	public void testCase1() {
 		final String termName = "groupby_age";
 		TermsAggregationBuilder aggbyType = AggregationBuilders.terms(termName).field(
@@ -76,7 +102,7 @@ public class EsTest {
 
 	}
 
-	@Test
+
 	public void testCase2() throws SQLException, ClassNotFoundException {
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@192.168.100.250:1521:tianque";
