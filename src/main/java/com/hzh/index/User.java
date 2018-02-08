@@ -54,6 +54,9 @@ public class User implements ElasticsearchIndexBean {
 	private String townCode;
 
 	@Field(type = FieldType.keyword, store = false)
+	private String createUser;
+
+	@Field(type = FieldType.keyword, store = false)
 	private String villageCode;
 
 	/** 创建时间 */
@@ -183,13 +186,22 @@ public class User implements ElasticsearchIndexBean {
 		this.createDate = createDate;
 	}
 
+	public String getCreateUser() {
+		return createUser;
+	}
+
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", organizationId=" + organizationId + ", userName=" + userName + ", name=" + name
 				+ ", mobile=" + mobile + ", fullpinyin=" + fullpinyin + ", simplepinyin=" + simplepinyin + ", email="
 				+ email + ", orgInternalCode=" + orgInternalCode + ", cityCode=" + cityCode + ", districtCode="
-				+ districtCode + ", townCode=" + townCode + ", villageCode=" + villageCode + ", createDate="
-				+ createDate + "]";
+				+ districtCode + ", townCode=" + townCode + ", createUser=" + createUser + ", villageCode="
+				+ villageCode + ", createDate=" + createDate + "]";
 	}
+
 
 }

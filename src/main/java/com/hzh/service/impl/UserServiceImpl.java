@@ -1,4 +1,4 @@
-package com.hzh.service;
+package com.hzh.service.impl;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +10,13 @@ import org.springframework.stereotype.Service;
 
 import com.hzh.config.IndexTypes;
 import com.hzh.index.User;
+import com.hzh.service.UserService;
 import com.hzh.vo.PageResult;
 import com.hzh.vo.UserSearchVo;
 
 @Service("userServiceImpl")
 public class UserServiceImpl implements UserService {
+
 	private String index = IndexTypes.USERS.getIndex();
 	private String type = IndexTypes.USERS.getType();
 	@Autowired
@@ -55,4 +57,7 @@ public class UserServiceImpl implements UserService {
 		BeanUtils.copyProperties(page, pageResult);
 		return pageResult;
 	}
+
+
+
 }

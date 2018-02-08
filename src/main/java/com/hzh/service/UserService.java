@@ -13,4 +13,5 @@ public interface UserService {
 
 	// dubbo 调用不能使用Page 得使用PageResult，因为Page是接口没有序列化
 	public PageResult<User> findUserByParams();
+
 }
