@@ -1,27 +1,16 @@
 package com.hzh.service;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
-import org.springframework.data.elasticsearch.core.query.SearchQuery;
-import org.springframework.stereotype.Service;
 
-import com.hzh.config.IndexTypes;
 import com.hzh.index.User;
+import com.hzh.vo.PageResult;
 import com.hzh.vo.UserSearchVo;
 
-@Service
-public class UserService extends BaseService {
-	private String index = IndexTypes.USERS.getIndex();
-	private String type = IndexTypes.USERS.getType();
+public interface UserService {
+	public Page<User> findUserByParams(UserSearchVo searchVo);
 
-	public Page<User> findUserByParams(UserSearchVo searchVo) {
+	public Integer getAge();
 
-		SearchQuery query = new NativeSearchQueryBuilder()
-				.withIndices(index)
-				.withTypes(type)
-				.withPageable(searchVo.getPageable())
-				.build();
-		Page<User> page = template.queryForPage(query, User.class);
-		return page;
-	}
+	// dubbo 调用不能使用Page 得使用PageResult，因为Page是接口没有序列化
+	public PageResult<User> findUserByParams();
 }
