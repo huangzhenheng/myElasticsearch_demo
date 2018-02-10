@@ -48,10 +48,10 @@ public class CollectServiceImpl implements CollectService {
 		logger.debug("开始查询数据");
 		PreparedStatement statement = conn.prepareStatement(sql);
 		ResultSet result = statement.executeQuery();
+
 		logger.debug("数据查询完成");
-		while (result.next()) {
-			fetchRows(result);
-		}
+
+		fetchRows(result);
 		logger.debug("数据采集结束");
 		result.close();
 		statement.cancel();
@@ -101,7 +101,6 @@ public class CollectServiceImpl implements CollectService {
 		user.setOrgInternalCode(rs.getString("orgInternalCode"));
 		user.setEmail(rs.getString("email"));
 		user.setFullpinyin(rs.getString("fullpinyin"));
-		user.setSimplepinyin(rs.getString("simplepinyin"));
 		user.setCreateUser(rs.getString("createUser"));
 		user.setCreateDate(rs.getDate("createDate"));
 		return user;

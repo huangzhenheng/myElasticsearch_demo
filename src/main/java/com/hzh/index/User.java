@@ -36,9 +36,6 @@ public class User implements ElasticsearchIndexBean {
 	private String fullpinyin;
 
 	@Field(type = FieldType.keyword, store = false)
-	private String simplepinyin;
-
-	@Field(type = FieldType.keyword, store = false)
 	private String email;
 
 	@Field(type = FieldType.keyword, store = false)
@@ -110,14 +107,6 @@ public class User implements ElasticsearchIndexBean {
 
 	public void setFullpinyin(String fullpinyin) {
 		this.fullpinyin = fullpinyin;
-	}
-
-	public String getSimplepinyin() {
-		return simplepinyin;
-	}
-
-	public void setSimplepinyin(String simplepinyin) {
-		this.simplepinyin = simplepinyin;
 	}
 
 	public String getEmail() {
@@ -195,13 +184,31 @@ public class User implements ElasticsearchIndexBean {
 	}
 
 	@Override
-	public String toString() {
-		return "User [id=" + id + ", organizationId=" + organizationId + ", userName=" + userName + ", name=" + name
-				+ ", mobile=" + mobile + ", fullpinyin=" + fullpinyin + ", simplepinyin=" + simplepinyin + ", email="
-				+ email + ", orgInternalCode=" + orgInternalCode + ", cityCode=" + cityCode + ", districtCode="
-				+ districtCode + ", townCode=" + townCode + ", createUser=" + createUser + ", villageCode="
-				+ villageCode + ", createDate=" + createDate + "]";
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
+
 
 
 }

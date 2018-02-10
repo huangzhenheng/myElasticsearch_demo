@@ -3,7 +3,7 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="/home" class="logo">
+    <a href="/" class="logo">
         <span class="logo-mini"><b>CRM</b></span>
         <span class="logo-lg">CRM</span>
     </a>
@@ -24,13 +24,13 @@
                     </a>
                     <ul class="dropdown-menu" style="width:auto">
                         <li class="user-body">
-                            <a href="/user/password">修改密码</a>
+                            <a href="#">修改密码</a>
                         </li>
                         <li class="user-body">
-                            <a href="/user/log">登录日志</a>
+                            <a href="#">登录日志</a>
                         </li>
                         <li class="user-body">
-                            <a href="/logout">安全退出</a>
+                            <a href="#">安全退出</a>
                         </li>
                     </ul>
                 </li>

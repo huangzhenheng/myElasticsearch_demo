@@ -1,5 +1,7 @@
 package com.hzh.vo;
 
+import java.util.Date;
+
 /**
  * 业务人口的搜索条件
  * 
@@ -20,20 +22,10 @@ public class UserSearchVo extends PageVo{
 	
 	private String villageCode;
 	
-	private Integer actualType;
-	
 	private String name;
 	
-	private String idCardNo;
-	
-	private Integer gender;
-	
-	private Integer nation;
-	
-	private Integer schooling;
-	
-	private Integer maritalstate;
-
+	private Date fromDate;
+	private Date endDate;
 	public String getOrgInternalCode() {
 		return orgInternalCode;
 	}
@@ -74,14 +66,6 @@ public class UserSearchVo extends PageVo{
 		this.villageCode = villageCode;
 	}
 
-	public Integer getActualType() {
-		return actualType;
-	}
-
-	public void setActualType(Integer actualType) {
-		this.actualType = actualType;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -90,45 +74,23 @@ public class UserSearchVo extends PageVo{
 		this.name = name;
 	}
 
-	public String getIdCardNo() {
-		return idCardNo;
+	public Date getFromDate() {
+		return fromDate;
 	}
 
-	public void setIdCardNo(String idCardNo) {
-		this.idCardNo = idCardNo;
+	public void setFromDate(Date fromDate) {
+		this.fromDate = fromDate;
 	}
 
-	public Integer getGender() {
-		return gender;
+	public Date getEndDate() {
+		return endDate;
 	}
 
-	public void setGender(Integer gender) {
-		this.gender = gender;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
-	public Integer getNation() {
-		return nation;
-	}
 
-	public void setNation(Integer nation) {
-		this.nation = nation;
-	}
-
-	public Integer getSchooling() {
-		return schooling;
-	}
-
-	public void setSchooling(Integer schooling) {
-		this.schooling = schooling;
-	}
-
-	public Integer getMaritalstate() {
-		return maritalstate;
-	}
-
-	public void setMaritalstate(Integer maritalstate) {
-		this.maritalstate = maritalstate;
-	}
 
 
 	
