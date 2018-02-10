@@ -30,7 +30,7 @@
                                     class="fa fa-arrow-up"></i> 采集用户</a>
                             <span class="pull-right">&nbsp;</span>
                             <a href="javascript:;" class="btn btn-xs btn-success pull-right" id="newBtn"><i
-                                    class="fa fa-user-plus"></i> 新增客户</a>
+                                    class="fa fa-user-plus"></i> 新增用户</a>
                         </div>
                         <div class="box-body">
                             <table id="dataTable1" class="table">
