@@ -5,17 +5,24 @@
 <mapper namespace="com.hzh.dao.UserMapper">
 
 	<!-- 新增用户 -->
-    <insert id="saveNewUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+    <insert id="saveNewUser" parameterType="User" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         INSERT INTO USERS (id, organizationid, username, name,mobile,fullpinyin, email,createuser,orginternalcode,createdate)
-        VALUES (s_users.nextval,11,#{username},#{name},#{mobile},#{fullpinyin},#{email},'admin','.1.1.',sysdate)
+        VALUES (s_users.nextval,12,#{userName},#{name},#{mobile},#{fullpinyin},#{email},'admin','.1.2.',sysdate)
     </insert>
     
 	<select id="findByDataTable" resultType="User">
         select * from (select u.*,rownum rownu from USERS u 
         		where rownum&lt;=#{start}+#{length} )tt
         where tt.rownu>#{start}
-        order by tt.username desc
+        order by tt.id desc
     </select>
+    
+    
+    
+    <update id="updateUser" parameterType="User">
+        UPDATE USERS SET name = #{name},mobile = #{mobile},email = #{email}
+        where id = #{id}
+    </update>
     
 
  	<select id="count" resultType="long">
@@ -25,5 +32,20 @@
 	<select id="findUserCountByParam" resultType="long">
         SELECT COUNT(*) FROM USERS
     </select>
+    
+    
+    <select id="findUserByName" parameterType="string" resultType="User">
+    	select * from users WHERE username = #{username,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="findUserByid" parameterType="long" resultType="User">
+    	select * from users WHERE id = #{id,jdbcType=NUMERIC}
+    </select>
+    
+    <select id="delUserById" parameterType="long">
+    	delete from users WHERE id = #{id,jdbcType=NUMERIC}
+    </select>
+    
+    
     
 </mapper>

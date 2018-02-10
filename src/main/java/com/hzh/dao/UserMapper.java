@@ -14,4 +14,12 @@ public interface UserMapper {
 	Long count();
 
 	Long findUserCountByParam(Map<String, Object> params);
+
+	User findUserByName(String username);
+
+	User findUserByid(Long id);
+
+	void delUserById(Long id);
+
+	void updateUser(User user);
 }

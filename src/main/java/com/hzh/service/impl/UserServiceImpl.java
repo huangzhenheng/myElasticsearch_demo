@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.ResultsExtractor;
+import org.springframework.data.elasticsearch.core.query.IndexQuery;
+import org.springframework.data.elasticsearch.core.query.IndexQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,7 @@ import com.hzh.config.IndexTypes;
 import com.hzh.dao.UserMapper;
 import com.hzh.index.User;
 import com.hzh.service.UserService;
+import com.hzh.util.Strings;
 import com.hzh.vo.PageResult;
 import com.hzh.vo.UserSearchVo;
 
@@ -50,14 +53,6 @@ public class UserServiceImpl implements UserService {
 				.build();
 		Page<User> page = template.queryForPage(query, User.class);
 		return page;
-	}
-
-	@Override
-	public Integer getAge() {
-		System.err.println("============================");
-		System.err.println("============================");
-		System.err.println("============================");
-		return 23;
 	}
 
 	@Override
@@ -194,19 +189,55 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> findAllUser(Map<String, Object> params) {
-		// TODO Auto-generated method stub
 		return userMapper.findByDataTable(params);
 	}
 
 	@Override
 	public Long count() {
-		// TODO Auto-generated method stub
 		return userMapper.count();
 	}
 
 	@Override
 	public Long findUserCountByParam(Map<String, Object> params) {
-		// TODO Auto-generated method stub
 		return userMapper.findUserCountByParam(params);
+	}
+
+	@Override
+	public User findUserByName(String username) {
+		return userMapper.findUserByName(username);
+	}
+
+	@Override
+	public void saveNewUser(User user) {
+		user.setFullpinyin(Strings.toPinyiin(user.getUserName()));
+		userMapper.saveNewUser(user);
+		indexUserByaddOrUpdate(user);
+	}
+
+
+	@Override
+	public User findUserByid(Long id) {
+		return userMapper.findUserByid(id);
+	}
+
+	@Override
+	public void delUserById(Long id) {
+		userMapper.delUserById(id);
+		template.delete(User.class, id.toString());
+	}
+
+	@Override
+	public void updateUser(User user) {
+		userMapper.updateUser(user);
+		indexUserByaddOrUpdate(user);
+	}
+
+	private void indexUserByaddOrUpdate(User user) {
+		user = userMapper.findUserByid(Long.valueOf(user.getId()));
+		template.index(buildIndex(user));
+	}
+
+	private IndexQuery buildIndex(User user) {
+		return new IndexQueryBuilder().withId(user.getId()).withObject(user).build();
 	}
 }
