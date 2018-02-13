@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.hzh.dao.UserMapper;
 import com.hzh.index.User;
-import com.hzh.mq.MyMsgES;
+import com.hzh.mq.EsConverter;
 
 /**
  * Created by 123 on 2017/12/27.
@@ -37,7 +37,7 @@ public class SpringJmsTestCase {
 		userMapper.saveNewUser(user);
 		user = userMapper.findUserByid(Long.valueOf(user.getId()));
 
-		jmsTemplate.setMessageConverter(new MyMsgES());
+		jmsTemplate.setMessageConverter(new EsConverter());
 		jmsTemplate.convertAndSend(user);
     }
 
