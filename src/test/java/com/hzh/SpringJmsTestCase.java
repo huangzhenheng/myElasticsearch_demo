@@ -18,7 +18,7 @@ import com.hzh.mq.EsConverter;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml", "classpath:applicationContext-activemq.xml",
-		"classpath:applicationContext-es.xml" })
+		"classpath:applicationContext-es.xml", "classpath:applicationContext-redis.xml" })
 public class SpringJmsTestCase {
 
 

@@ -33,7 +33,8 @@ import com.hzh.vo.UserSearchVo;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:applicationContext.xml", "classpath:applicationContext-es.xml" })
+@ContextConfiguration(locations = { "classpath:applicationContext.xml", "classpath:applicationContext-redis.xml",
+		"classpath:applicationContext-es.xml" })
 public class EsTest {
 
 	private String index = IndexTypes.USERS.getIndex();

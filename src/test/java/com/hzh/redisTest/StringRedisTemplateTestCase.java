@@ -15,8 +15,8 @@ import com.google.gson.Gson;
 import com.hzh.mq.MqUser;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:applicationContext.xml", "classpath:applicationContext-redis.xml" })
-public class StringRedisTemplateTestCase {
+@ContextConfiguration(locations = { "classpath:applicationContext.xml", "classpath:applicationContext-es.xml",
+"classpath:applicationContext-redis.xml" })public class StringRedisTemplateTestCase {
 	@Autowired
 	private StringRedisTemplate stringRedisTemplate;
 

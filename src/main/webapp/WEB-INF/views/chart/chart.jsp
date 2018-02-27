@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/static/dist/css/AdminLTE.min.css">
 
     <link rel="stylesheet" href="/static/dist/css/skins/skin-blue.min.css">
-    <link rel="stylesheet" href="/static/plugins/daterangepicker/daterangepicker-bs3.css">
+    <link rel="stylesheet" href="/static/plugins/daterangepicker/daterangepicker.css">
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
