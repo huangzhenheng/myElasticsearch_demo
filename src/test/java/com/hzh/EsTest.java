@@ -1,5 +1,7 @@
 package com.hzh;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,9 +13,9 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
@@ -25,10 +27,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.google.common.collect.Lists;
 import com.hzh.config.IndexTypes;
-import com.hzh.dao.UserMapper;
 import com.hzh.index.User;
 import com.hzh.service.CollectService;
-import com.hzh.vo.PageResult;
 import com.hzh.vo.UserSearchVo;
 
 
@@ -50,7 +50,7 @@ public class EsTest {
 		final String termName = "groupby_orgId";
 		UserSearchVo searchVo = new UserSearchVo();
 		searchVo.setOrgInternalCode(".");
-		// searchVo.setFromDate(new Date());
+		searchVo.setFromDate(new Date(1518192000));
 		TermsAggregationBuilder aggBuilder = AggregationBuilders.terms(termName).field(
 				"organizationId").size(100);
 
@@ -86,10 +86,11 @@ public class EsTest {
 	public void getUsers() {
 		UserSearchVo searchVo = new UserSearchVo();
 		searchVo.setOrgInternalCode(".");
-
+		searchVo.setFromDate(new Date(1518225314));
 		SearchQuery query = new NativeSearchQueryBuilder()
 				.withIndices(index)
 				.withTypes(type)
+				.withQuery(buildQuery(searchVo))
 				.withPageable(searchVo.getPageable())
 				.build();
 
@@ -103,22 +104,20 @@ public class EsTest {
 			}
 		});
 		Page<User> page = template.queryForPage(query, User.class);
-		PageResult<User> pageResult = new PageResult<User>();
+		SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		for (User user : page) {
+			System.out.println(
+					user.getUserName() + "  :  " + user.getEmail() + " : " + sFormat.format(user.getCreateDate()));
+		}
 
-		BeanUtils.copyProperties(page, pageResult);
-
-		System.out.println(pageResult.getContent());
 
 
 	}
 
-	@Autowired
-	private UserMapper userMapper;
 
 	@Test
 	public void testCollectCase() throws Exception {
 		collectService.collectUsers();
-		// userMapper.saveNewUser(new User());
 
 	}
 
@@ -148,16 +147,13 @@ public class EsTest {
 		}
 
 		if (searchVo.getFromDate() != null) {
-			orgQuery.filter(QueryBuilders.rangeQuery("createDate").gte(searchVo.getFromDate()));
+			orgQuery.filter(QueryBuilders.rangeQuery("createDate").gte(searchVo.getFromDate().getTime() * 1000));
 		}
 		if (searchVo.getEndDate() != null) {
-			orgQuery.filter(QueryBuilders.rangeQuery("createDate").lte(searchVo.getEndDate()));
+			orgQuery.filter(QueryBuilders.rangeQuery("createDate").lte(searchVo.getEndDate().getTime() * 1000));
 		}
 
 		return orgQuery;
 	}
-
-
-
 
 }

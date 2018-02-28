@@ -11,10 +11,9 @@
     </insert>
     
 	<select id="findByDataTable" resultType="User">
-        select * from (select u.*,rownum rownu from USERS u 
+        select * from (select u.*,rownum rownu from (SELECT * FROM  USERS  ORDER BY USERNAME DESC ) u 
         		where rownum&lt;=#{start}+#{length} )tt
         where tt.rownu>#{start}
-        order by tt.id desc
     </select>
     
     

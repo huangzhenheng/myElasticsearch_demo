@@ -133,10 +133,10 @@ public class UserServiceImpl implements UserService {
 		}
 
 		if (searchVo.getFromDate() != null) {
-			orgQuery.filter(QueryBuilders.rangeQuery("createDate").gte(searchVo.getFromDate()));
+			orgQuery.filter(QueryBuilders.rangeQuery("createDate").gte(searchVo.getFromDate().getTime() * 1000));
 		}
 		if (searchVo.getEndDate() != null) {
-			orgQuery.filter(QueryBuilders.rangeQuery("createDate").lte(searchVo.getEndDate()));
+			orgQuery.filter(QueryBuilders.rangeQuery("createDate").lte(searchVo.getEndDate().getTime() * 1000));
 		}
 
 		return orgQuery;

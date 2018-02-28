@@ -102,7 +102,7 @@ public class CollectServiceImpl implements CollectService {
 		user.setEmail(rs.getString("email"));
 		user.setFullpinyin(rs.getString("fullpinyin"));
 		user.setCreateUser(rs.getString("createUser"));
-		user.setCreateDate(rs.getDate("createDate"));
+		user.setCreateDate(rs.getTimestamp("createDate"));
 		return user;
 	}
 
