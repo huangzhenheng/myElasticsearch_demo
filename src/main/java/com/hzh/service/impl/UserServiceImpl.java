@@ -148,6 +148,7 @@ public class UserServiceImpl implements UserService {
 		UserSearchVo searchVo = new UserSearchVo();
 		searchVo.setOrgInternalCode(".");
 
+		// 聚合
 		TermsAggregationBuilder aggBuilder = AggregationBuilders.terms(termName).field(
 				"organizationId").size(100);
 

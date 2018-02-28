@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class MyAdvice {
 
-	@Pointcut("execution(* com.hzh..*.*(..))")
+	@Pointcut("execution(* com.hzh.service.*.*(..))")
 	public void pointCut() {
 
 	}
