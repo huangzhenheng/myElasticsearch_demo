@@ -11,29 +11,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hzh.service.UserService;
+import com.hzh.service.EsUserService;
 
 @Controller
 public class ChartController {
 	@Autowired
-	private UserService userService;
+	private EsUserService esUserService;
 	@GetMapping("/chart")
 	public String chartHome(Model model) {
-		model.addAttribute("userCount", userService.userCount());
+		model.addAttribute("userCount", esUserService.userCount());
 		return "chart/chart";
 	}
 
 	@GetMapping("/loadPieData")
 	@ResponseBody
 	public List<Map<String, Object>> loadPieData() {
-		return userService.loadPieData();
+		return esUserService.loadPieData();
 	}
 
 	@RequestMapping(value = "/loadBarData", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> loadBarData() {
 
-		return userService.loadBarData();
+		return esUserService.loadBarData();
 	}
 
 }

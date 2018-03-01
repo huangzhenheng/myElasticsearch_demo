@@ -30,24 +30,24 @@ public class EsConverter implements MessageConverter {
 	}
 
 	@Override
-	public User fromMessage(Message message) throws JMSException,
+	public MsgPojo fromMessage(Message message) throws JMSException,
 			MessageConversionException {
-		User user = null;
+		MsgPojo msgPojo = null;
 		if (message instanceof TextMessage) {
 			TextMessage textMessage = (TextMessage) message;
-			user = new Gson().fromJson(textMessage.getText(), User.class);
-			if (user != null && user.getId() != null) {
-				indexUserByaddOrUpdate(user);
+			msgPojo = new Gson().fromJson(textMessage.getText(), MsgPojo.class);
+			if (msgPojo != null && msgPojo.getId() != null) {
+				indexUserByaddOrUpdate(msgPojo.getId());
 			}
 		} else {
 			System.err.println("非TextMessage");
 		}
-		return user;
+		return msgPojo;
 
 	}
 
-	private void indexUserByaddOrUpdate(User user) {
-		user = userMapper.findUserByid(Long.valueOf(user.getId()));
+	private void indexUserByaddOrUpdate(Long id) {
+		User user = userMapper.findUserByid(id);
 		template.index(buildIndex(user));
 	}
 

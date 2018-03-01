@@ -12,6 +12,5 @@
     <!--dubbo的协议和端口-->
     <dubbo:protocol host="127.0.0.1" name="dubbo" port="20880"/>
     <!--暴露服务-->
-    <dubbo:service timeout="10000" interface="com.hzh.service.UserService" ref="userServiceImpl"/>
-
+    <dubbo:service timeout="10000" interface="com.hzh.service.EsUserService" ref="userServiceImpl"/>
 </beans>

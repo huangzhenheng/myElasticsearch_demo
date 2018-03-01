@@ -27,13 +27,14 @@ import com.google.common.collect.Maps;
 import com.hzh.config.IndexTypes;
 import com.hzh.dao.UserMapper;
 import com.hzh.index.User;
+import com.hzh.service.EsUserService;
 import com.hzh.service.UserService;
 import com.hzh.util.Strings;
 import com.hzh.vo.PageResult;
 import com.hzh.vo.UserSearchVo;
 
 @Service("userServiceImpl")
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, EsUserService {
 
 	private String index = IndexTypes.USERS.getIndex();
 	private String type = IndexTypes.USERS.getType();
@@ -44,7 +45,7 @@ public class UserServiceImpl implements UserService {
 	private UserMapper userMapper;
 
 	@Override
-	public Page<User> findUserByParams(UserSearchVo searchVo) {
+	public PageResult<User> findUserByParams(UserSearchVo searchVo) {
 
 		SearchQuery query = new NativeSearchQueryBuilder()
 				.withIndices(index)
@@ -52,7 +53,9 @@ public class UserServiceImpl implements UserService {
 				.withPageable(searchVo.getPageable())
 				.build();
 		Page<User> page = template.queryForPage(query, User.class);
-		return page;
+		PageResult<User> pageResult = new PageResult<User>();
+		BeanUtils.copyProperties(page, pageResult);
+		return pageResult;
 	}
 
 	@Override

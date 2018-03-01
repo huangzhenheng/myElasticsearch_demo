@@ -2,12 +2,6 @@ package com.hzh.vo;
 
 import java.util.Date;
 
-/**
- * 业务人口的搜索条件
- * 
- * @author luhongjin
- *
- */
 public class UserSearchVo extends PageVo{
 
 	private static final long serialVersionUID = 1L;
