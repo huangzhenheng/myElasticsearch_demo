@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import com.google.gson.Gson;
 import com.hzh.dao.UserMapper;
+import com.hzh.index.ElasticsearchIndexBean;
 import com.hzh.index.User;
 
 @Component
@@ -53,5 +54,9 @@ public class EsConverter implements MessageConverter {
 
 	private IndexQuery buildIndex(User user) {
 		return new IndexQueryBuilder().withId(user.getId()).withObject(user).build();
+	}
+
+	public void delete(ElasticsearchIndexBean object) {
+		template.delete(object.getClass(), object.getId());
 	}
 }
