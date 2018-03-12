@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
+import org.joda.time.DateTime;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class MyTestCase {
@@ -62,6 +64,7 @@ public class MyTestCase {
 	}
 
 	@Test
+	@Ignore
 	public void main1() {
 		List<String> languages = Arrays.asList("Java", "Python", "scala", "Shell", "R");
 
@@ -70,5 +73,12 @@ public class MyTestCase {
 		filterTest(languages, x -> true);
 		filterTest(languages, x -> false);
 		filterTest(languages, x -> x.length() > 4);
+	}
+
+	@Test
+	public void testDate() {
+
+		DateTime dateTime = new DateTime();
+
 	}
 }

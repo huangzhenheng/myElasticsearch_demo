@@ -9,6 +9,7 @@
         <ul class="sidebar-menu">
                 <li class="header">栏目</li>
                 <li class="${param.menu == 'home' ? 'active' : ''}"><a href="/"><i class="fa fa-home"></i> <span>首页</span></a></li>
+                <li class="${param.menu == 'job' ? 'active' : ''}"><a href="/quartz/listJob"><i class="fa fa-home"></i> <span>Job</span></a></li>
                 <li class="${param.menu == 'notice' ? 'active' : ''}"><a href="#"><i class="fa fa-bullhorn"></i> <span>公告</span></a></li>
                 <li class="${param.menu == 'sales' ? 'active' : ''}"><a href="#"><i class="fa fa-building-o"></i> <span>销售机会</span></a></li>
                 <li class="${param.menu == 'customer' ? 'active' : ''}"><a href="#"><i class="fa fa-users"></i> <span>客户管理</span></a></li>

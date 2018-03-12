@@ -52,5 +52,9 @@
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.hzh.dao"/>
     </bean>
-
+    <bean name="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" >
+        <property name="dataSource" ref ="dataSource" />       
+        <property name="applicationContextSchedulerContextKey" value="applicationContextKey"/>
+        <property name="configLocation" value="classpath:quartz.properties"/>			
+    </bean>
 </beans>
