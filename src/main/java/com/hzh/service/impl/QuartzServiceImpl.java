@@ -65,8 +65,6 @@ public class QuartzServiceImpl implements QuartzService{
 			TriggerKey triggerKey = TriggerKey.triggerKey(myJobPojo.getOldtriggerName(),
 					myJobPojo.getOldtriggerGroup());
 
-			JobDetail job = sched.getJobDetail(jobKey);
-			Class jobClass = job.getJobClass();
 			// 停止触发器
 			sched.pauseTrigger(triggerKey);
 			// 移除触发器

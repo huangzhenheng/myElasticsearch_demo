@@ -1,5 +1,6 @@
 package com.hzh.job;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.quartz.Job;
@@ -10,7 +11,7 @@ public class HelloWorldJob implements Job{
 
 	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
-		System.out.println("----hello world---" + new Date());
+		System.out.println("----hello world---" + new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(new Date()));
 	}
 
 }

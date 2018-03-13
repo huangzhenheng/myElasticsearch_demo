@@ -51,7 +51,7 @@ public class QuartzController {
 	 */
 	@RequestMapping(value = "/listJob")
 	public String listJob(Model model) throws SchedulerException {
-		List<JobEntity> jobInfos = this.getSchedulerJobInfo();
+		List<JobEntity> jobInfos = getSchedulerJobInfo();
 		model.addAttribute("jobInfos", jobInfos);
 		return "quartz/listjob";
 	}
