@@ -7,3 +7,8 @@
 http://blog.csdn.net/yx1214442120/article/details/55102298
 
 ### 集成activemq的时候最好不要使用activemq-all.jar  这个jar包会引起sl4j日志jar包的冲突
+
+### 远程es允许连接
+	elasticsearch.yml文件
+	1、 network.host: 0.0.0.0
+	2、 network.publish_host : 配置成外网ip。
