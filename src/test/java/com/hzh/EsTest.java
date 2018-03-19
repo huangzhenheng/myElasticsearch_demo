@@ -84,6 +84,7 @@ public class EsTest {
 
 
 	@Test
+	@Ignore
 	public void getUsers() {
 		UserSearchVo searchVo = new UserSearchVo();
 		searchVo.setOrgInternalCode(".");
@@ -117,7 +118,6 @@ public class EsTest {
 
 
 	@Test
-	@Ignore
 	public void testCollectCase() throws Exception {
 		collectService.collectUsers();
 
