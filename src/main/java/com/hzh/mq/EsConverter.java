@@ -15,8 +15,8 @@ import org.springframework.stereotype.Component;
 
 import com.google.gson.Gson;
 import com.hzh.dao.UserMapper;
-import com.hzh.index.ElasticsearchIndexBean;
 import com.hzh.index.User;
+import com.hzh.util.ActionType;
 
 @Component
 public class EsConverter implements MessageConverter {
@@ -38,7 +38,12 @@ public class EsConverter implements MessageConverter {
 			TextMessage textMessage = (TextMessage) message;
 			msgPojo = new Gson().fromJson(textMessage.getText(), MsgPojo.class);
 			if (msgPojo != null && msgPojo.getId() != null) {
-				indexUserByaddOrUpdate(msgPojo.getId());
+				if (msgPojo.getType().equals(ActionType.delete)) {
+					delete(msgPojo.getId());
+				} else {
+					indexUserByaddOrUpdate(msgPojo.getId());
+				}
+
 			}
 		} else {
 			System.err.println("非TextMessage");
@@ -56,7 +61,7 @@ public class EsConverter implements MessageConverter {
 		return new IndexQueryBuilder().withId(user.getId()).withObject(user).build();
 	}
 
-	public void delete(ElasticsearchIndexBean object) {
-		template.delete(object.getClass(), object.getId());
+	public void delete(Long id) {
+		template.delete(User.class, id.toString());
 	}
 }
