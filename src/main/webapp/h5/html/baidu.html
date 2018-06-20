@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>百度一下，你就知道</title>
+    <Link rel="Shortcut Icon" href="../img/favicon.ico" type="image/x-icon"/>
+    <style>
+        html, body {
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            height: 100%;
+            font: 12px arial;
+        }
+
+        .main {
+            height: 100%;
+        }
+
+        .header {
+            position: relative;
+            top: 38.2%;
+        }
+
+        .m {
+            position: relative;
+            top: -191px;
+        }
+
+        .m-lg {
+            display: block;
+            width: 270px;
+        }
+
+        .center {
+            margin: 0px auto;
+        }
+
+        .m-sou {
+            width: 641px;
+            height: 37px;
+            margin: 22px auto;
+        }
+
+        .inp {
+            font-size: 16px;
+            float: left;
+            height: 22px;
+            width: 532px;
+            margin-top: 3px;
+            padding-top: 6px;
+            padding-left: 7px;
+            padding-bottom: 6px;
+            outline: none;
+            border-top: 1px solid rgb(184, 184, 184);
+            border-left: 1px solid rgb(184, 184, 184);
+            border-bottom: 1px solid rgb(204, 204, 204);
+            border-right: 0px;
+        }
+
+        .inp:hover {
+            border-top-color: rgb(153, 153, 153);
+            border-left-color: rgb(153, 153, 153);
+            border-bottom-color: rgb(179, 179, 179);
+        }
+
+        .inp:focus {
+            border-color: rgb(71, 145, 255);
+        }
+
+        .sub {
+            margin-top: 3px;
+            float: left;
+            width: 100px;
+            height: 36px;
+            padding-bottom: 2px;
+            background-color: #3385ff;
+            border: 0px;
+            color: white;
+            font-size: 15px;
+            letter-spacing: 1px;
+            outline: none;
+        }
+
+        .sub:hover {
+            background-color: blue;
+            cursor: pointer;
+        }
+
+        .footer {
+            position: absolute;
+            width: 100%;
+            bottom: 44px;
+            text-align: center;
+            height: 84px;
+        }
+
+        .footer .f-a {
+            color: rgb(0, 0, 238);
+        }
+
+        .footer .f-a:nth-child(2) {
+            margin: 0 17px;
+        }
+
+        .footer p {
+            margin-top: 5px;
+            color: #666;
+        }
+
+        .footer p a, .footer p a:active {
+            color: #666;
+            display: inline-block;
+        }
+        .i-icon {
+            display: inline-block;
+            width: 14px;
+            height: 17px;
+            background: url("../img/icons_f0338722.png");
+            background-position: -600px -96px;
+            position: relative;
+            top: 3px;
+        }
+        .nav {
+            width: 445px;
+            height: 24px;
+            position: absolute;
+            top: 19px;
+            right: 0px;
+        }
+        .nav a {
+            float: left;
+            font-size: 13px;
+            color: #333;
+            margin-left: 20px;
+            line-height: 24px;
+        }
+
+        .nav a:hover {
+            color: rgb(0, 0, 204);;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .nav-m {
+            display: block;
+            position: absolute;
+            top: 19px;
+            right: 12px;
+            overflow: hidden;
+            width: 59px;
+            height: 24px;
+            background-color: rgb(51, 136, 255);
+            text-align: center;
+            color: white;
+            cursor: pointer;
+            letter-spacing: 1px;
+            line-height: 24px;
+            padding-left: 1px;
+        }
+
+        .nav-m:hover {
+            position: fixed;
+            color: rgb(51, 51, 51);
+            background-color: #fff;
+            width: 83px;
+            height: 100%;
+            right: 0px;
+            border-left: 1px solid rgb(231, 231, 231);
+            top: 0px;
+            padding-top: 18px;
+            padding-left: 2px;
+            cursor: default;
+        }
+
+        .nav-m div {
+            text-align: center;
+        }
+
+        .nav-m div a {
+            display: inline-block;
+            color: #666;
+            width: 66px;
+            height: 76px;
+            border-bottom: 1px solid #f0f0f0;
+            text-align: center;
+            text-decoration: none;
+            letter-spacing: 0px;
+            position: relative;
+            left: -1px;
+        }
+
+        .nav-m div a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-m div a:first-child {
+            padding-top: 10px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .nav-m div a span {
+            display: block;
+            margin: 10px auto 1px;
+            width: 36px;
+            height: 36px;
+            background-image: url("../img/bdbri_icons_737be4e5.png");
+        }
+        a span.zd {
+            background-position: -36px 0px;
+        }
+
+        a span.yy {
+            background-position: -72px 0px;
+            width: 40px;
+        }
+
+        a span.tp {
+            background-position: -112px 0px;
+        }
+
+        a span.wk {
+            background-position: -148px 0px;
+        }
+
+        a span.fyb {
+            background-position: -184px 0px;
+        }
+
+        a span.bdtg {
+            background-position: -220px 0px;
+        }
+
+        .nav-m div a.qb {
+            margin-top: 11px;
+            text-decoration: underline;
+            border-top: none;
+        }
+
+        .set {
+            width: 70px;
+            height: 104px;
+            border: 1px solid #d1d1d1;
+            box-shadow: 1px 1px 5px #d1d1d1;
+            position: absolute;
+            top: 47px;
+            right: 70px;
+            visibility: hidden;
+        }
+
+        .set:hover {
+            visibility: visible;
+        }
+
+        .set .sz {
+            position: absolute;
+            width: 30px;
+            padding: 0px;
+            top: -30px;
+            left: 19px;
+            font-size: 13px;
+            text-decoration: underline;
+            visibility: visible;
+        }
+
+        .set a {
+            width: 56px;
+            height: 26px;
+            line-height: 26px;
+            padding: 0px 5px 0px 9px;
+            display: block;
+            font-size: 12px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .set .bc {
+            display: block;
+            position: absolute;
+            width: 11px;
+            height: 8px;
+            background-color: #fff;
+            background-image: url("../img/icons_f0338722.png");
+            background-position: -457px -146px;
+            top: -8px;
+            left: 30px;
+        }
+
+        .set a:hover {
+            background-color: rgb(51, 136, 255);
+            color: white;
+        }
+
+        .set .sz:hover {
+            background-color: transparent;
+            color: rgb(0, 0, 204);
+        }
+
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="header">
+        <div class="m">
+            <img class="m-lg center" src="../img/bd_logo1.png">
+
+            <div class="m-sou">
+                <form action="libai.html" method="get">
+                    <input class="inp" type="text" name="wd"/>
+                    <input class="sub" type="submit" value="百度一下">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <a class="f-a" href="#">把百度设为主页</a>
+        <a class="f-a" href="#">关于百度</a>
+        <a class="f-a" href="#">About&nbsp;&nbsp;Baidu</a>
+
+        <p>©2015&nbsp;Baidu
+            <a href="#">使用百度前必读</a>
+            <a href="#">意见反馈</a>&nbsp;京ICP证030173号
+            <i class="i-icon"></i>
+        </p>
+    </div>
+    <div class="nav">
+        <a class="bold" href="#">新闻</a>
+        <a class="bold" href="#">hao123</a>
+        <a class="bold" href="#">地图</a>
+        <a class="bold" href="#">视频</a>
+        <a class="bold" href="#">贴吧</a>
+        <a href="#">登录</a>
+    </div>
+    <div class="nav-m" href="#">更多产品
+        <div>
+            <a href="#"><span class="nm"></span>糯米</a>
+            <a href="#"><span class="zd"></span>知道</a>
+            <a href="#"><span class="yy"></span>音乐</a>
+            <a href="#"><span class="tp"></span>图片</a>
+            <a href="#"><span class="wk"></span>文库</a>
+            <a href="#"><span class="fyb"></span>风云榜</a>
+            <a href="#"><span class="bdtg"></span>百度推广</a>
+
+            <div>
+                <a class="qb" href="#" name="tj_more">全部产品&gt;&gt;</a>
+            </div>
+        </div>
+    </div>
+    <div class="set">
+        <i class="bc"></i>
+        <a class="sz" href="#">设置</a>
+        <a href="#">搜索设置</a>
+        <a href="#">高级搜索</a>
+        <a href="#">关闭预测</a>
+        <a href="#">搜索历史</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MyJavaScript</title>
+    <link rel="stylesheet" href="../css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
+</head>
+<body>
+
+<div class="navbar">
+    <i class="fa fa-tasks"></i> TodoList
+</div>
+
+<div class="container">
+    <div class="input-warpper">
+        <input type="text" class="newtodo" id="input-newtodo" placeholder="+ 添加一个任务">
+    </div>
+    <ul class="list" id="newList">
+
+    </ul>
+    <a href="#" class="donetasknum"><span id="finishNum">2</span>个已完成任务</a>
+    <ul class="list" id="List">
+
+    </ul>
+</div>
+<script>
+    var newList = document.querySelector("#newList");
+    var List = document.querySelector("#List");
+    var finishNum = document.querySelector("#finishNum");
+    var input = document.querySelector("#input-newtodo");
+
+    //1、对象数组
+    var data = [
+        {todo: "8点开始晨读", finish: true},
+        {todo: "9点学习英语", finish: true},
+        {todo: "10点学习数学", finish: false},
+        {todo: "11点学习专业课", finish: false}
+    ];
+
+    //2、循环对象数组，i与java不同，这里是下标
+    function init() {
+
+        for (var i in data) {
+            toLi(data[i]);
+        }
+        LoadFinish();
+    }
+    function LoadFinish() {
+        var total = 0;
+        for (var i in data) {
+            if (data[i].finish) {
+                total++;
+            }
+        }
+        finishNum.innerText = total.toString();
+    }
+
+    //3、初始化对象
+    function toLi(obj) {
+        //创建节点并按层次添加
+        var li = document.createElement("li");
+        var div = document.createElement("div");
+        var a = document.createElement("a");
+        var aSpan = document.createElement("span");
+        var span = document.createElement("span");
+        a.appendChild(aSpan);
+        div.appendChild(a);
+        div.appendChild(span);
+        li.appendChild(div);
+
+        aSpan.setAttribute("class", "checkbox");
+        a.setAttribute("href", "javascript:;");//a标签没有了跳转的功能
+        a.setAttribute("class", "ck-warpper");
+        span.setAttribute("class", "text");
+        span.innerText = obj.todo;
+        div.setAttribute("class", "task-warpper");
+
+        if (obj.finish) {
+            li.setAttribute("class", "done"); //只有已完成的li才有done
+            List.appendChild(li);
+        } else {
+            newList.appendChild(li);
+        }
+    }
+    init();
+    //添加任务
+    input.onkeyup = function (evt) {
+        if (evt.keyCode == 13) {//判断回车键
+            var text = input.value;//获取输入框的值
+            if (text.length == 0) {//判断输入框中数据的长度
+                return;
+            } else {
+                input.value = "";//清空输入框
+                var tObj = {todo: text, finish: false};//创建对象
+                data.push(tObj);//追加对象
+                toLi(tObj);
+            }
+        }
+    }
+    //事件委托,将事件委托给document，然后判断点的是不是span
+    document.onclick = function (evt) {
+        var target = evt.target;
+        if (target.getAttribute("class") == "checkbox") {
+            var li = target.parentElement.parentElement.parentElement;
+            if (li.getAttribute("class") == "done") {
+                li.removeAttribute("class");
+                List.removeChild(li);
+                var text = li.querySelector(".text").innerText;
+                changeFinish(text);
+                newList.appendChild(li);
+            } else {
+                li.setAttribute("class", "done");
+                newList.removeChild(li);
+                var text = li.querySelector(".text").innerText;
+                changeFinish(text);
+                List.appendChild(li);
+            }
+            LoadFinish();
+        }
+    }
+    function changeFinish(text) {
+        for (var i in data) {
+            if (data[i].todo == text) {
+                data[i].finish = !data[i].finish;
+            }
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+body{
+	margin: 0px;
+	font-family: "Lato","Helvetica Neue","Arial",Sans-Serif;
+	/*font-family: "DIN Next Ultra Light","Helvetica Neue",Helvetica, Arial,"Lantinghei SC","Hiragino Sans GB",STHeiti, "Noto Sans S Chinese", "Microsoft Yahei", "Microsoft Sans Serif", "WenQuanYi Micro Hei",sans-serif;*/
+	font-weight:300;
+	font-size: 14px;
+	background-image: url(../img/bg.jpg);
+}
+.hide{
+	display: none;
+}
+.navbar{
+	height: 50px;
+	background-color: #fff;
+	line-height: 50px;
+	font-size: 20px;
+	text-align: center;
+}
+.container{
+	width: 600px;
+	margin: 0px auto;
+}
+.todos{
+	
+	background-color: #fff;
+}
+.input-warpper{
+
+	margin-top: 20px;
+	background-color: rgba(0,0,0,0.3);
+	height: 40px;
+	border-radius: 3px;
+	line-height: 40px;
+}
+.newtodo{
+	width: 584px;
+	outline: none;
+	padding: 0px 8px;
+	color: #fff;
+	background: transparent;
+	border:none;
+	text-shadow: 0 1px 2px rgba(0,0,0,0.8);	
+
+}
+/*定制 placeholder 的 css*/
+.newtodo::-webkit-input-placeholder { 
+	color:#fff; 
+	text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+
+.list{
+	margin: 20px 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+.list li{
+	margin-bottom: 3px;
+	height: 38px;	
+}
+.list li .task-warpper{
+	background-color: rgba(255,255,255,0.8);
+	border-radius: 3px;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+	box-shadow: 0 1px 2px rgba(0,0,0,0.3); 
+	position: relative;
+}
+.list li .ck-warpper{
+	position: absolute;
+	top:12px;
+	left:10px;
+	color: #888;
+}
+.list li .checkbox{
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	cursor: pointer;
+	border: 1px solid #888;
+	border-radius: 3px;
+}
+.list li .text{
+	color: #2c3e50;
+	display: inline-block;
+	height: 38px;
+	line-height: 38px;
+	margin-left: 30px;
+	font-weight: 400;
+}
+.donetasknum{
+	text-decoration: none;
+	background-color: rgba(0,0,0,0.3);
+	color: #fff;
+	padding: 5px;
+	border-radius: 3px;
+	font-size: 12px;
+}
+.list .done .task-warpper{
+	background-color: rgba(255,255,255,0.5);
+}
+.list .done .text{
+	text-decoration: line-through;
+	color: #7f8c8d;
+}
+/*设置√图标*/
+.list .done .checkbox:after{
+	font-family: FontAwesome;
+	content: "\f00c";
+	font-size: 15px;
+	position: absolute;
+	top:-1px;
+	left: 2px;
+}
+
+
+
+
+
+

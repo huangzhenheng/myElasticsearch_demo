@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>mydom_01</title>
+    <style>
+        ul {
+            list-style: none;
+            border: 1px black solid;
+            height: 130px;
+            padding: 20px;
+            float: left;
+            width: 100px;
+            margin-left: 30px;
+        }
+
+        .div2 {
+            position: absolute;
+            top: 220px;
+            left: 40px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <ul id="u1">
+        <li><input type="checkbox"/><span>篮球</span></li>
+        <li><input type="checkbox"/><span>足球</span></li>
+        <li><input type="checkbox"/><span>排球</span></li>
+        <li><input type="checkbox"/><span>棒球</span></li>
+        <li><input type="checkbox"/><sapn>羽毛球</sapn></li>
+        <li><input type="checkbox"/><span>乒乓球</span></li>
+        <li><input type="checkbox"/><span>橄榄球</span></li>
+    </ul>
+    <ul id="u2"></ul>
+</div>
+<div class="div2">
+    <input id="input" type="text"/><button id="button">添加</button>
+</div>
+
+<script>
+    var ul1 = document.querySelector("#u1");
+    var ul2 = document.querySelector("#u2");
+    var button = document.querySelector("#button");
+    var input = document.querySelector("#input");
+    document.onclick = function (evt) {
+        var target = evt.target;
+        var li = target.parentNode;
+        if (target.getAttribute("type") == "checkbox") {
+            var ul = target.parentElement.parentElement;
+            if (ul.getAttribute("id") == "u1") {
+                ul1.removeChild(li);
+                ul2.appendChild(li);
+            } else {
+                ul2.removeChild(li);
+                ul1.appendChild(li);
+            }
+        }
+    }
+    button.onclick = function () {
+
+        var text = input.value;
+        if (text.length == 0) {
+            return;
+        } else {
+            input.value = "";
+            var ll = document.createElement("li");
+            var newAdd = document.createElement("input");
+            var span = document.createElement("span");
+            span.innerText=text;
+            ll.appendChild(newAdd);
+            ll.appendChild(span);
+            ul1.appendChild(ll);
+            newAdd.setAttribute("type","checkbox");
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>myphoto</title>
+    <style>
+        .image {
+            width: 250px;
+        }
+
+        .box {
+            padding: 2px;
+            border-top: 1px solid #EEE;
+            position: relative;
+            display: inline-block;
+            box-shadow: 0 1px 2px 0 rgba(180, 180, 180, 0.5);
+            overflow: hidden;
+            border-radius: 2px;
+            font-size: 12px;
+            font-family: arial, 宋体, sans-serif;
+        }
+
+        .box-img {
+            position: relative;
+        }
+
+        .img-hover {
+            position: absolute;
+            background-color: #fff;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            opacity: 0;
+        }
+
+        .img-hover:hover {
+            opacity: 0.3;
+        }
+
+        .img-num {
+            width: 75px;
+            line-height: 36px;
+            height: 36px;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            right: 0px;
+            bottom: 30px;
+            border-top-left-radius: 18px;
+            border-bottom-left-radius: 18px;
+            text-align: center;
+            z-index: 99999;
+        }
+
+        .img-num .num, .img-num .text {
+            color: white;
+        }
+
+        .img-num .num {
+            font-size: 28px;
+            vertical-align: middle;
+        }
+
+        .img-num .text {
+            font-size: 14px;
+        }
+
+        .info {
+            padding-left: 15px;
+            line-height: 25px;
+        }
+
+        .info-tag label {
+            color: #888;
+        }
+
+        a.info-title, a.info-title:visited {
+            text-decoration: none;
+            color: #000;
+        }
+
+        a.info-title:hover {
+            text-decoration: underline;
+        }
+
+        .info-tag a, .info-tag a:visited {
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            padding: 2px 5px;
+        }
+
+        .info-tag a:hover {
+            background-color: #e64e40;
+            color: #f4f4f4;
+        }
+
+        .div1 {
+            background-color: white;
+            border: solid gray 0.1px;
+            padding: 9px;
+            width: 300px;
+            height: 300px;
+            box-shadow: 2px 2px 3px #aaaaaa;
+            transform: rotate(7deg);
+            position: absolute;
+            top: 50px;
+            left: 60px;
+        }
+
+        .div2 {
+            font-family: sans-serif;
+            font-weight: bold;
+        }
+
+        .div3 {
+            border: solid gray 0.1px;
+            background-color: white;
+            padding: 9px;
+            width: 300px;
+            height: 270px;
+            box-shadow: 2px 2px 3px #aaaaaa;
+            transform: rotate(-8deg);
+            position: relative;
+            top: 40px;
+            left: 360px;
+        }
+
+        .div4 {
+            font-family: sans-serif;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="box-img">
+        <img class="image" src="../img/dog.jpg" alt="dog">
+
+        <div class="img-hover"></div>
+        <div class="img-num">
+            <span class="num">25</span>
+            <span class="text">张</span>
+        </div>
+    </div>
+    <div class="info">
+        <a class="info-title" href="#">小美妞与金毛犬野外郊游</a>
+
+        <div class="info-tag">
+            <label>标签:</label>
+            <a href="#">金毛</a>
+        </div>
+    </div>
+
+    <div class="div1">
+        <div class="div2">
+            <img src="../img/ballade_dream.jpg" alt="郁金香"/><br/><br/>
+            上海鲜花港的郁金香，花名：Ballade <br/> Dream。
+        </div>
+    </div>
+    <div class="div3">
+        <div class="div4">
+            <img src="../img/china_pavilion.jpg" alt="中国馆"/><br/><br/>
+            2010年上海世博会,中国馆。
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+
+
+</script>
+</html>
